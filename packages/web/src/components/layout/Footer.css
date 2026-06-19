@@ -1,0 +1,227 @@
+/* Footer Styles - Retro Theme */
+.app-footer {
+  background: var(--color-surface);
+  border-top: 3px solid var(--color-border);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    font-size: 1rem;
+  }
+}
+
+.footer-text {
+  color: var(--color-text-secondary);
+}
+
+/* Technophile Link */
+.footer-link-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.footer-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.footer-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--color-neon);
+  text-shadow:
+    0 0 10px var(--color-primary),
+    0 0 20px var(--color-primary);
+}
+
+.footer-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* LinkedIn Hover Card */
+.linkedin-card {
+  position: absolute;
+  bottom: calc(100% + 15px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-surface);
+  border: 3px solid var(--color-neon);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  min-width: 250px;
+  box-shadow:
+    0 0 20px rgba(0, 212, 255, 0.3),
+    0 10px 40px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: cardSlideUp 0.3s ease;
+}
+
+.linkedin-card::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--color-neon);
+}
+
+.linkedin-card::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--color-surface);
+}
+
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.linkedin-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.linkedin-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid var(--color-primary);
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+}
+
+.linkedin-info {
+  flex: 1;
+}
+
+.linkedin-name {
+  font-family: var(--font-retro);
+  font-size: 0.75rem;
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-xs) 0;
+  text-shadow: 0 0 10px var(--color-primary);
+}
+
+.linkedin-title {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.linkedin-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--color-border);
+}
+
+.linkedin-icon {
+  color: #0077b5;
+  display: flex;
+  align-items: center;
+}
+
+.linkedin-cta {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: #0077b5;
+  font-weight: 600;
+}
+
+/* Heart Animation */
+.footer-heart {
+  display: inline-block;
+  animation: heartbeat 1.5s ease-in-out infinite;
+  font-size: 1.2em;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .linkedin-card {
+    min-width: 220px;
+    padding: var(--spacing-sm);
+  }
+
+  .linkedin-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .linkedin-name {
+    font-size: 0.625rem;
+  }
+
+  .linkedin-title {
+    font-size: 0.75rem;
+  }
+}

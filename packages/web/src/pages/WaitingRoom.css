@@ -1,0 +1,193 @@
+.waiting-page {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.waiting-container {
+  max-width: 500px;
+  width: 100%;
+}
+
+.waiting-card {
+  text-align: center;
+  animation: slideUp 0.3s ease;
+}
+
+/* Loading */
+.waiting-loading {
+  text-align: center;
+  padding: var(--spacing-2xl);
+}
+
+.loading-spinner {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: var(--spacing-md);
+  animation: pulse 1s ease infinite;
+}
+
+/* Error */
+.waiting-error {
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Status Icon */
+.waiting-status-icon {
+  margin-bottom: var(--spacing-lg);
+}
+
+.waiting-status-icon span {
+  font-size: 4rem;
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  .waiting-status-icon span {
+    font-size: 5rem;
+  }
+}
+
+/* Team Info */
+.waiting-team-name {
+  font-family: var(--font-retro);
+  font-size: 1rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  .waiting-team-name {
+    font-size: 1.5rem;
+  }
+}
+
+.waiting-leader {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-xs);
+}
+
+.waiting-members {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Status Message */
+.waiting-status-message {
+  background: var(--color-background);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.status-title {
+  font-family: var(--font-retro);
+  font-size: 0.75rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .status-title {
+    font-size: 1rem;
+  }
+}
+
+.status-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Tokens Display */
+.waiting-tokens {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  background: var(--color-surface);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-accent);
+  margin-top: var(--spacing-md);
+}
+
+.waiting-tokens .token-icon {
+  font-size: 1.5rem;
+  animation: coinFlip 3s ease infinite;
+}
+
+.waiting-tokens .token-amount {
+  font-family: var(--font-retro);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+}
+
+@media (min-width: 768px) {
+  .waiting-tokens .token-icon {
+    font-size: 2rem;
+  }
+
+  .waiting-tokens .token-amount {
+    font-size: 1rem;
+  }
+}
+
+/* Game Status */
+.waiting-game-status {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 2px dashed var(--color-border);
+}
+
+.game-status-text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* Rejoin Code Display */
+.rejoin-code-display {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 136, 0.1),
+    rgba(0, 212, 255, 0.1)
+  );
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.rejoin-code-label {
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.rejoin-code-value {
+  font-size: var(--font-2xl);
+  font-weight: bold;
+  color: var(--color-primary);
+  letter-spacing: 4px;
+  padding: var(--spacing-sm) 0;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.rejoin-code-hint {
+  font-size: var(--font-xs);
+  color: var(--color-accent);
+  margin-top: var(--spacing-xs);
+}

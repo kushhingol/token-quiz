@@ -1,0 +1,11 @@
+.results-page {
+  min-height: calc(100vh - 60px);
+  padding: var(--spacing-md);
+}
+
+.results-container {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--spacing-2xl);
+}

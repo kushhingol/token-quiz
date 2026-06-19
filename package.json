@@ -1,0 +1,33 @@
+{
+  "name": "token-betting-quiz",
+  "version": "1.0.0",
+  "description": "Real-time, retro-themed multi-team token betting quiz game",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter @token-quiz/web dev",
+    "build": "pnpm --filter @token-quiz/web build",
+    "preview": "pnpm --filter @token-quiz/web preview",
+    "lint": "pnpm --filter @token-quiz/web lint",
+    "build:shared": "pnpm --filter @token-quiz/shared build",
+    "firebase:deploy": "firebase deploy",
+    "firebase:emulators": "firebase emulators:start"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "keywords": [
+    "quiz",
+    "game",
+    "real-time",
+    "firebase",
+    "react",
+    "retro",
+    "multiplayer"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
