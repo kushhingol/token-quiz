@@ -467,6 +467,61 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
+  // Delete game
+  const handleDeleteGame = async (gameIdToDelete: string, gameName: string) => {
+    const confirmed = window.confirm(
+      `🗑️ DELETE GAME?\n\nAre you sure you want to delete "${gameName}"?\n\nThis will permanently remove:\n• The game and all its settings\n• All registered teams\n• All responses and scores\n\nThis action cannot be undone!`,
+    );
+
+    if (!confirmed) return;
+
+    try {
+      // Delete all teams in the game
+      const teamsRef = collection(db, "games", gameIdToDelete, "teams");
+      const teamsSnapshot = await getDocs(teamsRef);
+
+      const teamsBatch = writeBatch(db);
+      teamsSnapshot.docs.forEach((teamDoc) => {
+        teamsBatch.delete(teamDoc.ref);
+      });
+      await teamsBatch.commit();
+
+      // Delete all responses in the game
+      const responsesRef = collection(db, "games", gameIdToDelete, "responses");
+      const responsesSnapshot = await getDocs(responsesRef);
+
+      const responsesBatch = writeBatch(db);
+      responsesSnapshot.docs.forEach((responseDoc) => {
+        responsesBatch.delete(responseDoc.ref);
+      });
+      await responsesBatch.commit();
+
+      // Delete all questions in the game
+      const questionsRef = collection(db, "games", gameIdToDelete, "questions");
+      const questionsSnapshot = await getDocs(questionsRef);
+
+      const questionsBatch = writeBatch(db);
+      questionsSnapshot.docs.forEach((questionDoc) => {
+        questionsBatch.delete(questionDoc.ref);
+      });
+      await questionsBatch.commit();
+
+      // Finally, delete the game document
+      const gameRef = doc(db, "games", gameIdToDelete);
+      await deleteDoc(gameRef);
+
+      alert(`✅ Game "${gameName}" has been deleted.`);
+
+      // Navigate back to games list if we deleted the currently selected game
+      if (gameIdToDelete === gameId) {
+        navigate("/admin");
+      }
+    } catch (error: any) {
+      console.error("Error deleting game:", error);
+      alert(`❌ Failed to delete game: ${error.message || "Unknown error"}`);
+    }
+  };
+
   // Reset game - resets all scores and progress
   const handleResetGame = async () => {
     if (!gameId || !selectedGame) return;
@@ -607,23 +662,35 @@ const AdminDashboard: React.FC = () => {
             ) : (
               <div className="games-grid">
                 {games.map((game) => (
-                  <div
-                    key={game.id}
-                    className={`game-card ${game.status}`}
-                    onClick={() => navigate(`/admin/game/${game.id}`)}
-                  >
-                    <div className="game-name">{game.name}</div>
-                    <div className={`game-status status-${game.status}`}>
-                      {game.status.toUpperCase()}
+                  <div key={game.id} className={`game-card ${game.status}`}>
+                    <div
+                      className="game-card-content"
+                      onClick={() => navigate(`/admin/game/${game.id}`)}
+                    >
+                      <div className="game-name">{game.name}</div>
+                      <div className={`game-status status-${game.status}`}>
+                        {game.status.toUpperCase()}
+                      </div>
+                      <div className="game-info">
+                        <span>
+                          Q: {game.currentQuestionIndex + 1}/
+                          {game.totalQuestions}
+                        </span>
+                        {game.autoAdvance && (
+                          <span className="auto-badge">🤖 AUTO</span>
+                        )}
+                      </div>
                     </div>
-                    <div className="game-info">
-                      <span>
-                        Q: {game.currentQuestionIndex + 1}/{game.totalQuestions}
-                      </span>
-                      {game.autoAdvance && (
-                        <span className="auto-badge">🤖 AUTO</span>
-                      )}
-                    </div>
+                    <button
+                      className="btn btn-danger btn-delete-game"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteGame(game.id, game.name);
+                      }}
+                      title="Delete Game"
+                    >
+                      🗑️
+                    </button>
                   </div>
                 ))}
               </div>

@@ -375,9 +375,32 @@
   transition: all 0.2s ease;
 }
 
+.game-card {
+  position: relative;
+}
+
+.game-card-content {
+  cursor: pointer;
+}
+
 .game-card:hover {
   border-color: var(--color-primary);
   transform: translateY(-2px);
+}
+
+.btn-delete-game {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  padding: var(--spacing-xs);
+  min-width: auto;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.game-card:hover .btn-delete-game {
+  opacity: 1;
 }
 
 .game-card.active {
